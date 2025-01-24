@@ -73,14 +73,18 @@ namespace ArielAnchapaxiP3.ViewModels
         {
             airport =  await App._apiRepository.GetResponseAPI(currentNameAirport);
 
-            if
-            responseFromAPI = ConvertToString(airport);
+            if (airport != null)
+                responseFromAPI = ConvertToString(airport);
+            else
+                responseFromAPI = "Información no encontrada.";
+            
             OnPropertyChanged(nameof(responseFromAPI));
         }
 
         public void CleanScreen()
         {
             currentNameAirport = "";
+            OnPropertyChanged(nameof(currentNameAirport));
         }
 
         public void SaveInSQLite()
