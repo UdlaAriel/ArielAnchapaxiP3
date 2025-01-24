@@ -11,18 +11,19 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace ArielAnchapaxiP3.ViewModels
 {
     public class AirportViewModel : INotifyPropertyChanged
     {
-        //private readonly AirportRepository _repository;
-        private AirportModel _airport;
-        private string _currentNameAirport;
-        private string _responseFromAPI;
-        public Command GetAirportCommand;
-        public Command SaveAirportInSQLiteCommand;
-        public Command ClearScreenCommand;
+        //private readonly APIRepository _repository;
+        private AirportModel _airport = new AirportModel();
+        private string _currentNameAirport = "";
+        private string _responseFromAPI = "";
+        public ICommand GetAirportCommand { get; set; }
+        public ICommand SaveAirportInSQLiteCommand { get; set; }
+        public ICommand ClearScreenCommand { get; set; }
         public string currentNameAirport
         {
             get => _currentNameAirport;
@@ -64,6 +65,7 @@ namespace ArielAnchapaxiP3.ViewModels
 
         public AirportViewModel()
         {
+           // _/repository = new APIRepository();
             GetAirportCommand = new Command(GetAirport);
             SaveAirportInSQLiteCommand = new Command(SaveInSQLite);
             ClearScreenCommand = new Command(CleanScreen);
