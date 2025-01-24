@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using ArielAnchapaxiP3.Repositories;
+using Microsoft.Extensions.Logging;
 
 namespace ArielAnchapaxiP3
 {
@@ -18,6 +19,8 @@ namespace ArielAnchapaxiP3
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+            string dbPath = System.IO.Path.Combine(FileSystem.AppDataDirectory, "josure_riera.db3");
+            builder.Services.AddSingleton<AirportRepository>(s => ActivatorUtilities.CreateInstance<AirportRepository>(s, dbPath));
 
             return builder.Build();
         }
