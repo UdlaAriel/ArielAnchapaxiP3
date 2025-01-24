@@ -65,7 +65,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\SecondPage.xaml">
+	  <Compile Update="Views\ArielAnchapaxi.xaml.cs">
+	    <DependentUpon>ArielAnchapaxi.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\APIInfoPage.xaml.cs">
+	    <DependentUpon>APIInfoPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\ArielAnchapaxi.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

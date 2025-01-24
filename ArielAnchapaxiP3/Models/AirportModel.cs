@@ -10,8 +10,14 @@ namespace ArielAnchapaxiP3.Models
     {
         public int id { get; set; }
         public string name { get; set; }
+        public string code { get; set; }
         public Location location { get; set; }
+        public string city { get; set; }
         public string country { get; set; }
+        public string timezone { get; set; }
+        public Terminal[] terminals { get; set; }
+        public string[] airlines { get; set; }
+        public string[] services { get; set; }
         public Contact_Info contact_info { get; set; }
 
         public class Location
@@ -25,6 +31,18 @@ namespace ArielAnchapaxiP3.Models
             public string phone { get; set; }
             public string email { get; set; }
             public string website { get; set; }
+        }
+
+        public class Terminal
+        {
+            public string name { get; set; }
+            public Gate[] gates { get; set; }
+        }
+
+        public class Gate
+        {
+            public string gate_number { get; set; }
+            public string[] airlines { get; set; }
         }
     }
 }
