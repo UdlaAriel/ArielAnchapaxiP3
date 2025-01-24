@@ -1,8 +1,8 @@
 namespace ArielAnchapaxiP3.Views;
 
-public partial class SecondPage : ContentPage
+public partial class ArielAnchapaxi : ContentPage
 {
-	public SecondPage()
+	public ArielAnchapaxi()
 	{
 		InitializeComponent();
 	}

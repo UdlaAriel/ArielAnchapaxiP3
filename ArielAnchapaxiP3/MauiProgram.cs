@@ -22,7 +22,7 @@ namespace ArielAnchapaxiP3
             string dbPath = System.IO.Path.Combine(FileSystem.AppDataDirectory, "ariel_anchapaxi.db3");
             builder.Services.AddSingleton<AirportRepository>(s => ActivatorUtilities.CreateInstance<AirportRepository>(s, dbPath));
 
-            builder.Services.AddScoped<APIRepository>();
+            builder.Services.AddScoped<APIRepository>(s => ActivatorUtilities.CreateInstance<APIRepository>(s));
 
             return builder.Build();
         }
