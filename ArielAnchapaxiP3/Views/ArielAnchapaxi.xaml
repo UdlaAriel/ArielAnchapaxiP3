@@ -33,13 +33,13 @@
                                 <Label Text="{Binding country, StringFormat='País: {0}'}" 
                                 FontSize="16" 
                                 TextColor="DarkBlue"/>
-                                <Label Text="{Binding location.latitude, StringFormat='Latitud: {0}'}" 
+                                <Label Text="{Binding latitude, StringFormat='Latitud: {0}'}" 
                                 FontSize="14" 
                                 TextColor="Black"/>
-                                <Label Text="{Binding location.longitude, StringFormat='Longitud: {0}'}" 
+                                <Label Text="{Binding longitude, StringFormat='Longitud: {0}'}" 
                                 FontSize="14" 
                                 TextColor="Black"/>
-                                <Label Text="{Binding contact_info.email, StringFormat='Correo: {0}'}" 
+                                <Label Text="{Binding email, StringFormat='Correo: {0}'}" 
                                 FontSize="14" 
                                 TextColor="Black"/>
                                 <Label Text="{Binding personName, StringFormat='AAnchapaxi: {0}'}" 

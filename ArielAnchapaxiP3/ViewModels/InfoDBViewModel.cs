@@ -14,10 +14,10 @@ namespace ArielAnchapaxiP3.ViewModels
     public class InfoDBViewModel : INotifyPropertyChanged
     {
         //private readonly AirportRepository _repository;
-        private ObservableCollection<AirportModel> _airports = new ObservableCollection<AirportModel>();
+        private ObservableCollection<AirportSupportedModel> _airports = new ObservableCollection<AirportSupportedModel>();
         public ICommand GetAirportListCommand { get; set; }
 
-        public ObservableCollection<AirportModel> airports
+        public ObservableCollection<AirportSupportedModel> airports
         {
             get => _airports;
             set
@@ -37,7 +37,7 @@ namespace ArielAnchapaxiP3.ViewModels
 
         public void GetAllAirports()
         {
-            App._airportRepository.GetAllAirports();
+            airports = new ObservableCollection<AirportSupportedModel>(App._airportRepository.GetAllAirports());
             OnPropertyChanged(nameof(airports));
         }
 

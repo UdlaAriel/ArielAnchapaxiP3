@@ -19,6 +19,7 @@ namespace ArielAnchapaxiP3.ViewModels
     {
         //private readonly APIRepository _repository;
         private AirportModel _airport = new AirportModel();
+        private AirportSupportedModel supportedAirport = new AirportSupportedModel();
         private string _currentNameAirport = "";
         private string _responseFromAPI = "";
         public ICommand GetAirportCommand { get; set; }
@@ -49,6 +50,7 @@ namespace ArielAnchapaxiP3.ViewModels
                 }
             }
         }
+        
         public AirportModel airport
         {
             get => _airport;
@@ -91,16 +93,27 @@ namespace ArielAnchapaxiP3.ViewModels
             OnPropertyChanged(nameof(currentNameAirport));
         }
 
-        public async void SaveInSQLite()
+        public void SaveInSQLite()
         {
-            airport = await App._apiRepository.GetResponseAPI(currentNameAirport);
-
             if (airport != null)
             {
-                bool a = App._airportRepository.AddNewAirport(airport);
+                supportedAirport.id = airport.id;
+                supportedAirport.name = airport.name;
+                supportedAirport.country = airport.country;
+                supportedAirport.latitude = airport.location.latitude;
+                supportedAirport.longitude = airport.location.longitude;
+                supportedAirport.email = airport.contact_info.email;
+                supportedAirport.personName = airport.personName;
+
+                bool validation = App._airportRepository.AddNewAirport(supportedAirport);
+
+                if (!validation)
+                    responseFromAPI = $"Hubo un error. {validation}";
+                else
+                    responseFromAPI = "Información guardada exitosamente.";
             }
             else
-                responseFromAPI = "Información no encontrada.";
+                responseFromAPI = "No fue posible guardar en la DB";
 
             OnPropertyChanged(nameof(responseFromAPI));
         }

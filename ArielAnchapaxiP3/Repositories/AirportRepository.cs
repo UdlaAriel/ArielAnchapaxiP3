@@ -21,10 +21,10 @@ namespace ArielAnchapaxiP3.Repositories
                 return;
 
             conn = new SQLiteConnection(_dbPath);
-            conn.CreateTable<AirportModel>();
+            conn.CreateTable<AirportSupportedModel>();
         }
 
-        public bool AddNewAirport(AirportModel airport)
+        public bool AddNewAirport(AirportSupportedModel airport)
         {
             int result = 0;
             try
@@ -46,20 +46,20 @@ namespace ArielAnchapaxiP3.Repositories
 
         }
 
-        public List<AirportModel> GetAllAirports()
+        public List<AirportSupportedModel> GetAllAirports()
         {
             try
             {
                 Init();
                 StatusMessage = string.Format("Success");
-                return conn.Table<AirportModel>().ToList();
+                return conn.Table<AirportSupportedModel>().ToList();
             }
             catch (Exception ex)
             {
                 StatusMessage = string.Format("Failed to retrieve data. {0}", ex.Message);
             }
 
-            return new List<AirportModel>();
+            return new List<AirportSupportedModel>();
         }
     }
 }
