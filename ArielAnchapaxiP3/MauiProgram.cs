@@ -20,11 +20,11 @@ namespace ArielAnchapaxiP3
     		builder.Logging.AddDebug();
 #endif
 #if ANDROID
-    string dbPath = Path.Combine(FileSystem.AppDataDirectory, "ariel_anchapaxi.db3");
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "ariel_anchapaxi.db3");
 #elif IOS
             string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "ariel_anchapaxi.db3");
 #else
-    string dbPath = Path.Combine(FileSystem.AppDataDirectory, "ariel_anchapaxi.db3");
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "ariel_anchapaxi.db3");
 #endif
 
             builder.Services.AddSingleton<AirportRepository>(s => ActivatorUtilities.CreateInstance<AirportRepository>(s, dbPath));

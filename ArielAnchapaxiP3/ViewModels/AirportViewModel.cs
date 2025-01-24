@@ -76,7 +76,9 @@ namespace ArielAnchapaxiP3.ViewModels
             airport =  await App._apiRepository.GetResponseAPI(currentNameAirport);
 
             if (airport != null)
+            {
                 responseFromAPI = ConvertToString(airport);
+            }
             else
                 responseFromAPI = "Información no encontrada.";
             
@@ -89,9 +91,18 @@ namespace ArielAnchapaxiP3.ViewModels
             OnPropertyChanged(nameof(currentNameAirport));
         }
 
-        public void SaveInSQLite()
+        public async void SaveInSQLite()
         {
-            App._airportRepository.AddNewAirport(airport);
+            airport = await App._apiRepository.GetResponseAPI(currentNameAirport);
+
+            if (airport != null)
+            {
+                bool a = App._airportRepository.AddNewAirport(airport);
+            }
+            else
+                responseFromAPI = "Información no encontrada.";
+
+            OnPropertyChanged(nameof(responseFromAPI));
         }
 
         public string ConvertToString(AirportModel airport)

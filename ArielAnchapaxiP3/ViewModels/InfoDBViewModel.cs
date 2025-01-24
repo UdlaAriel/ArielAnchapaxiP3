@@ -7,14 +7,15 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace ArielAnchapaxiP3.ViewModels
 {
     public class InfoDBViewModel : INotifyPropertyChanged
     {
         //private readonly AirportRepository _repository;
-        private ObservableCollection<AirportModel> _airports;
-        public Command GetAirportListCommand;
+        private ObservableCollection<AirportModel> _airports = new ObservableCollection<AirportModel>();
+        public ICommand GetAirportListCommand { get; set; }
 
         public ObservableCollection<AirportModel> airports
         {

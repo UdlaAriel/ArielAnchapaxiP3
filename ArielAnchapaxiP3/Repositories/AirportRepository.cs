@@ -1,10 +1,5 @@
 ﻿using ArielAnchapaxiP3.Models;
 using SQLite;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ArielAnchapaxiP3.Repositories
 {
@@ -20,7 +15,6 @@ namespace ArielAnchapaxiP3.Repositories
             _dbPath = dbpath;
         }
 
-
         private void Init()
         {
             if (conn != null)
@@ -30,7 +24,7 @@ namespace ArielAnchapaxiP3.Repositories
             conn.CreateTable<AirportModel>();
         }
 
-        public void AddNewAirport(AirportModel airport)
+        public bool AddNewAirport(AirportModel airport)
         {
             int result = 0;
             try
@@ -42,10 +36,12 @@ namespace ArielAnchapaxiP3.Repositories
                 result = conn.Insert(airport);
 
                 StatusMessage = string.Format("{0} record(s) added (Name: {1})", result, airport.name);
+                return true;
             }
             catch (Exception ex)
             {
                 StatusMessage = string.Format("Failed to add {0}. Error: {1}", airport.name, ex.Message);
+                return false;
             }
 
         }

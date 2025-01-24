@@ -27,6 +27,10 @@
                 Text="Limpiar"
                 Command="{Binding ClearScreenCommand}" />
 
+            <Button x:Name="Ariel_SaveAirportButton"
+                Text="Guardar en SQLite"
+                Command="{Binding SaveAirportInSQLiteCommand}" />
+
         </VerticalStackLayout>
     </ScrollView>
 
