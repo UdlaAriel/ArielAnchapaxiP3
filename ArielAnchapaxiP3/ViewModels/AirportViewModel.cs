@@ -17,9 +17,22 @@ namespace ArielAnchapaxiP3.ViewModels
     {
         //private readonly AirportRepository _repository;
         private AirportModel _airport;
+        private string _currentNameAirport;
         public Command GetAirportCommand;
         public Command SaveAirportInSQLiteCommand;
-
+        public Command ClearScreenCommand;
+        public string currentNameAirport
+        {
+            get => _currentNameAirport;
+            set
+            {
+                if (_currentNameAirport != value)
+                {
+                    _currentNameAirport = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         public AirportModel airport
         {
             get => _airport;
@@ -38,6 +51,7 @@ namespace ArielAnchapaxiP3.ViewModels
         {
             GetAirportCommand = new Command(GetAirport);
             SaveAirportInSQLiteCommand = new Command(SaveInSQLite);
+            ClearScreenCommand = new Command(CleanScreen);
         }
 
         public void GetAirport()
@@ -45,9 +59,9 @@ namespace ArielAnchapaxiP3.ViewModels
             
         }
 
-        public void GetAllAirports()
+        public void CleanScreen()
         {
-
+            currentNameAirport = "";
         }
 
         public void SaveInSQLite()

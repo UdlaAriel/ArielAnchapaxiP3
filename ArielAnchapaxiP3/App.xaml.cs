@@ -4,12 +4,14 @@ namespace ArielAnchapaxiP3
 {
     public partial class App : Application
     {
-        public static AirportRepository repository { get; private set; }
+        public static AirportRepository _sqliteRepository { get; private set; }
+        public static APIRepository _apiRepository { get; private set; }
 
-        public App(AirportRepository _repository)
+        public App(AirportRepository SQLiteRepository, APIRepository APIRepository)
         {
             InitializeComponent();
-            _repository = repository;
+            _sqliteRepository = SQLiteRepository;
+            _apiRepository = APIRepository;
             MainPage = new AppShell();
         }
     }

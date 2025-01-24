@@ -19,8 +19,10 @@ namespace ArielAnchapaxiP3
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
-            string dbPath = System.IO.Path.Combine(FileSystem.AppDataDirectory, "josure_riera.db3");
+            string dbPath = System.IO.Path.Combine(FileSystem.AppDataDirectory, "ariel_anchapaxi.db3");
             builder.Services.AddSingleton<AirportRepository>(s => ActivatorUtilities.CreateInstance<AirportRepository>(s, dbPath));
+
+            builder.Services.AddScoped<APIRepository>();
 
             return builder.Build();
         }

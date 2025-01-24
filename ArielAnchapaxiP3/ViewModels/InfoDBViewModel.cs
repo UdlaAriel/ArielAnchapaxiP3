@@ -16,7 +16,7 @@ namespace ArielAnchapaxiP3.ViewModels
         private ObservableCollection<AirportModel> _airports;
         public Command GetAirportListCommand;
 
-        public ObservableCollection<AirportModel> list
+        public ObservableCollection<AirportModel> airports
         {
             get => _airports;
             set
@@ -36,7 +36,8 @@ namespace ArielAnchapaxiP3.ViewModels
 
         public void GetAllAirports()
         {
-
+            App.repository.GetAllAirports();
+            OnPropertyChanged(nameof(airports));
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
