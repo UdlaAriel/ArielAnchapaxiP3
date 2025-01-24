@@ -1,5 +1,6 @@
 ﻿
 using ArielAnchapaxiP3.Models;
+using ArielAnchapaxiP3.Repositories;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,8 +15,12 @@ namespace ArielAnchapaxiP3.ViewModels
 {
     public class AirportViewModel : INotifyPropertyChanged
     {
-        public AirportModel _airport;
-        public ObservableCollection<AirportModel> _airports ;
+        //private readonly AirportRepository _repository;
+        private AirportModel _airport;
+        private ObservableCollection<AirportModel> _airports ;
+        public Command GetAirportCommand;
+        public Command GetAirportListCommand;
+        public Command SaveAirportInSQLiteCommand;
 
         public AirportModel airport
         {
@@ -32,18 +37,35 @@ namespace ArielAnchapaxiP3.ViewModels
 
         public ObservableCollection<AirportModel> list
         {
-            get => _list;
+            get => _airports;
             set
             {
-                if (_list != value)
+                if (_airports != value)
                 {
-                    _list = value;
+                    _airports = value;
                     OnPropertyChanged();
                 }
             }
         }
 
         public AirportViewModel()
+        {
+            GetAirportCommand = new Command(GetAirport);
+            GetAirportListCommand = new Command(GetAllAirports);
+            SaveAirportInSQLiteCommand = new Command(SaveInSQLite);
+        }
+
+        public void GetAirport()
+        {
+            
+        }
+
+        public void GetAllAirports()
+        {
+
+        }
+
+        public void SaveInSQLite()
         {
 
         }
