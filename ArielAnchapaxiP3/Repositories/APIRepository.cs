@@ -12,7 +12,7 @@ namespace ArielAnchapaxiP3.Repositories
     {
         public APIRepository() { }
 
-        public async Task<string?> GetResponseAPI(string airportname)
+        public async Task<AirportModel> GetResponseAPI(string airportname)
         {
             string url = $"https://freetestapi.com/api/v1/airports?search={Uri.EscapeDataString(airportname)}";
 
@@ -22,7 +22,17 @@ namespace ArielAnchapaxiP3.Repositories
                 {
                     HttpResponseMessage response = await client.GetAsync(url);
                     response.EnsureSuccessStatusCode();
-                    return await response.Content.ReadAsStringAsync();
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string responseAsString = await response.Content.ReadAsStringAsync();
+                        AirportModel airport = (AirportModel)JsonConvert.DeserializeObject(responseAsString);
+
+                        return airport;
+                    }
+                    
+                    return null;
+                    
                 }
                 catch (Exception ex)
                 {
