@@ -15,7 +15,7 @@ namespace ArielAnchapaxiP3.Repositories
 
         public async Task<AirportModel> GetResponseAPI(string airportname)
         {
-            string url = $"https://freetestapi.com/api/v1/airports?search={Uri.EscapeDataString(airportname)}";
+            string url = $"https://freetestapi.com/api/v1/airports?search={airportname}";
 
             using (HttpClient client = new HttpClient())
             {

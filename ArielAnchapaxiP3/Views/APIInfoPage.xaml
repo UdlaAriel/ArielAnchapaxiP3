@@ -1,20 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ArielAnchapaxiP3.ViewModels"
              x:Class="ArielAnchapaxiP3.Views.APIInfoPage">
 
+    <ContentPage.BindingContext>
+        <local:AirportViewModel/>
+    </ContentPage.BindingContext>
+
     <ScrollView>
-        <VerticalStackLayout>
+        <VerticalStackLayout Spacing="20" Padding="20">
             <Entry x:Name="Ariel_Entry"
-                Text="{Binding AirportName}" />
+                Text="{Binding currentNameAirport}" />
 
             <Label x:Name="Ariel_Label"
-                Text="{Binding AirportInfo}"
-                FontSize="Body"/>
+                Text="{Binding responseFromAPI}"
+                FontSize="Body"
+                Background="Black"
+                TextColor="White" />
 
             <Button x:Name="Ariel_GetAirportButton"
-                Text=""
-                    />
+                Text="Revisar en API"
+                Command="{Binding GetAirportCommand}"/>
+
+            <Button x:Name="Ariel_ClearScreenButton"
+                Text="Limpiar"
+                Command="{Binding ClearScreenCommand}" />
 
         </VerticalStackLayout>
     </ScrollView>

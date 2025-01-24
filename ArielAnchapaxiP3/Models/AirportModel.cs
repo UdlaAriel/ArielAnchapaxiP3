@@ -44,5 +44,6 @@ namespace ArielAnchapaxiP3.Models
             public string gate_number { get; set; }
             public string[] airlines { get; set; }
         }
+        public string personName => "Ariel Anchapaxi";
     }
 }

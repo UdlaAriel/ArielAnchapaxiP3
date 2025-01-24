@@ -36,7 +36,7 @@ namespace ArielAnchapaxiP3.ViewModels
 
         public void GetAllAirports()
         {
-            App._sqliteRepository.GetAllAirports();
+            App._airportRepository.GetAllAirports();
             OnPropertyChanged(nameof(airports));
         }
 

@@ -1,6 +1,7 @@
 ﻿
 using ArielAnchapaxiP3.Models;
 using ArielAnchapaxiP3.Repositories;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace ArielAnchapaxiP3.ViewModels
         //private readonly AirportRepository _repository;
         private AirportModel _airport;
         private string _currentNameAirport;
+        private string _responseFromAPI;
         public Command GetAirportCommand;
         public Command SaveAirportInSQLiteCommand;
         public Command ClearScreenCommand;
@@ -29,6 +31,19 @@ namespace ArielAnchapaxiP3.ViewModels
                 if (_currentNameAirport != value)
                 {
                     _currentNameAirport = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public string responseFromAPI
+        {
+            get => _responseFromAPI;
+            set
+            {
+                if (_responseFromAPI != value)
+                {
+                    _responseFromAPI = value;
                     OnPropertyChanged();
                 }
             }
@@ -54,9 +69,13 @@ namespace ArielAnchapaxiP3.ViewModels
             ClearScreenCommand = new Command(CleanScreen);
         }
 
-        public void GetAirport()
+        public async void GetAirport()
         {
-            
+            airport =  await App._apiRepository.GetResponseAPI(currentNameAirport);
+
+            if
+            responseFromAPI = ConvertToString(airport);
+            OnPropertyChanged(nameof(responseFromAPI));
         }
 
         public void CleanScreen()
@@ -66,7 +85,22 @@ namespace ArielAnchapaxiP3.ViewModels
 
         public void SaveInSQLite()
         {
+            App._airportRepository.AddNewAirport(airport);
+        }
 
+        public string ConvertToString(AirportModel airport)
+        {
+#pragma warning disable IDE0300 // Simplificar la inicialización de la recopilación
+            string[] relevantData = new string[5];
+#pragma warning restore IDE0300 // Simplificar la inicialización de la recopilación
+
+            relevantData[0] = airport.name;
+            relevantData[1] = airport.country;
+            relevantData[2] = Convert.ToString(airport.location.latitude);
+            relevantData[3] = Convert.ToString(airport.location.longitude);
+            relevantData[4] = airport.contact_info.email;
+
+            return string.Join(',', relevantData);
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
