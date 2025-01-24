@@ -9,14 +9,16 @@
 
     <FlyoutItem Title="Examen P3">
         <ShellContent
-        Title="API Info"
-        ContentTemplate="{DataTemplate local:APIInfoPage}"
-        Route="APIInfoPage" />
+            x:Name="ShellContent1_Ariel"
+            Title="API Info"
+            ContentTemplate="{DataTemplate local:APIInfoPage}"
+            Route="APIInfoPage" />
 
         <ShellContent
-        Title="Ariel Anchapaxi"
-        ContentTemplate="{DataTemplate local:ArielAnchapaxi}"
-        Route="ArielAnchapaxi" />
+            x:Name="ShellContent2_Ariel"
+            Title="Ariel Anchapaxi"
+            ContentTemplate="{DataTemplate local:ArielAnchapaxi}"
+            Route="ArielAnchapaxi" />
     </FlyoutItem>
 
 </Shell>
