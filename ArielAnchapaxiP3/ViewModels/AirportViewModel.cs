@@ -17,9 +17,7 @@ namespace ArielAnchapaxiP3.ViewModels
     {
         //private readonly AirportRepository _repository;
         private AirportModel _airport;
-        private ObservableCollection<AirportModel> _airports ;
         public Command GetAirportCommand;
-        public Command GetAirportListCommand;
         public Command SaveAirportInSQLiteCommand;
 
         public AirportModel airport
@@ -35,23 +33,10 @@ namespace ArielAnchapaxiP3.ViewModels
             }
         }
 
-        public ObservableCollection<AirportModel> list
-        {
-            get => _airports;
-            set
-            {
-                if (_airports != value)
-                {
-                    _airports = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
 
         public AirportViewModel()
         {
             GetAirportCommand = new Command(GetAirport);
-            GetAirportListCommand = new Command(GetAllAirports);
             SaveAirportInSQLiteCommand = new Command(SaveInSQLite);
         }
 

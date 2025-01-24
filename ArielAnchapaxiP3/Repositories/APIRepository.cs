@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,18 +22,21 @@ namespace ArielAnchapaxiP3.Repositories
                 try
                 {
                     HttpResponseMessage response = await client.GetAsync(url);
-                    response.EnsureSuccessStatusCode();
 
                     if (response.IsSuccessStatusCode)
                     {
-                        string responseAsString = await response.Content.ReadAsStringAsync();
-                        AirportModel airport = (AirportModel)JsonConvert.DeserializeObject(responseAsString);
+                        List<AirportModel> responseAsList = (await response.Content.ReadFromJsonAsync<List<AirportModel>>())!;
 
-                        return airport;
+                        var firstAirport = responseAsList.FirstOrDefault();
+
+                        if (firstAirport != null)
+                        {
+                           return firstAirport;
+                        }
+
+                        return null;
                     }
-                    
                     return null;
-                    
                 }
                 catch (Exception ex)
                 {
